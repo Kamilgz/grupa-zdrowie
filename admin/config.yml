@@ -1,35 +1,225 @@
-# ============================================================
-# KONFIGURACJA PANELU CMS - Grupa Zdrowie
-# ============================================================
-# Ten plik mówi panelowi co można edytować na stronie.
-# Każda sekcja "collection" = jeden ekran w panelu.
-# ============================================================
-
-# --- 1. POŁĄCZENIE Z DECAPBRIDGE (logowanie) ---
-# UWAGA: To trzeba zastąpić blokiem skopiowanym z DecapBridge!
 backend:
   name: git-gateway
   repo: Kamilgz/grupa-zdrowie
   branch: main
   identity_url: https://auth.decapbridge.com/sites/7e7a16ea-6f78-474a-a3f0-0954d862a182
   gateway_url: https://gateway.decapbridge.com
+  auth_type: ""
+  auth_endpoint: oauth/external
 
-# --- 2. GDZIE ZAPISYWAĆ WGRANE OBRAZKI ---
-media_folder: "obrazki"
-public_folder: "/obrazki"
+site_url: https://kamilgz.github.io/grupa-zdrowie/
+display_url: https://kamilgz.github.io/grupa-zdrowie/
+logo_url: https://kamilgz.github.io/grupa-zdrowie/
 
-# --- 3. CO MOŻNA EDYTOWAĆ ---
+publish_mode: simple
+media_folder: "media"
+public_folder: "/media"
+locale: "pl"
+
 collections:
-  - name: "tresci"
-    label: "Treści strony"
+  # ========== SEKCJA HERO (góra strony) ==========
+  - name: "hero"
+    label: "1. Sekcja HERO (góra strony)"
     files:
       - file: "tresci/hero.md"
+        label: "Hero - tytuł i opis"
         name: "hero"
-        label: "Sekcja główna (hero)"
         fields:
-          - { name: "tag", label: "Mała etykieta nad tytułem", widget: "string" }
-          - { name: "tytul_linia_1", label: "Tytuł - linia 1", widget: "string" }
-          - { name: "tytul_linia_2", label: "Tytuł - linia 2 (wyróżniona)", widget: "string" }
-          - { name: "opis", label: "Opis pod tytułem", widget: "text" }
-          - { name: "przycisk_1", label: "Przycisk 1 - tekst", widget: "string" }
-          - { name: "przycisk_2", label: "Przycisk 2 - tekst", widget: "string" }
+          - {label: "Mała etykieta (Platforma medyczna)", name: "tag", widget: "string"}
+          - {label: "Tytuł - linia 1 (czarna)", name: "tytul_linia_1", widget: "string"}
+          - {label: "Tytuł - linia 2 (niebieska)", name: "tytul_linia_2", widget: "string"}
+          - {label: "Opis pod tytułem", name: "opis", widget: "text"}
+          - {label: "Tekst przycisku 1 (granatowy)", name: "przycisk_1", widget: "string"}
+          - {label: "Tekst przycisku 2 (niebieski)", name: "przycisk_2", widget: "string"}
+
+  # ========== SEKCJA MODUŁY (3 kafelki) ==========
+  - name: "moduly"
+    label: "2. Sekcja MODUŁY (3 kafelki)"
+    files:
+      - file: "tresci/moduly.md"
+        label: "Moduły 01, 02, 03"
+        name: "moduly"
+        fields:
+          - {label: "Moduł 01 - tytuł", name: "modul1_tytul", widget: "string"}
+          - {label: "Moduł 01 - opis", name: "modul1_opis", widget: "text"}
+          - {label: "Moduł 02 - tytuł", name: "modul2_tytul", widget: "string"}
+          - {label: "Moduł 02 - opis", name: "modul2_opis", widget: "text"}
+          - {label: "Moduł 03 - tytuł", name: "modul3_tytul", widget: "string"}
+          - {label: "Moduł 03 - opis", name: "modul3_opis", widget: "text"}
+
+  # ========== SEKCJA KONTO PACJENTA ==========
+  - name: "konto"
+    label: "3. Sekcja KONTO PACJENTA"
+    files:
+      - file: "tresci/konto.md"
+        label: "Konto pacjenta"
+        name: "konto"
+        fields:
+          - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
+          - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
+          - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
+          - {label: "Etykieta białej karty (Najczęściej używane)", name: "karta_etykieta", widget: "string"}
+          - {label: "Funkcja 1 - tytuł", name: "f1_tytul", widget: "string"}
+          - {label: "Funkcja 1 - opis", name: "f1_opis", widget: "string"}
+          - {label: "Funkcja 2 - tytuł", name: "f2_tytul", widget: "string"}
+          - {label: "Funkcja 2 - opis", name: "f2_opis", widget: "string"}
+          - {label: "Funkcja 3 - tytuł", name: "f3_tytul", widget: "string"}
+          - {label: "Funkcja 3 - opis", name: "f3_opis", widget: "string"}
+          - {label: "Funkcja 4 - tytuł", name: "f4_tytul", widget: "string"}
+          - {label: "Funkcja 4 - opis", name: "f4_opis", widget: "string"}
+          - {label: "Niebieska karta - etykieta", name: "niebieska_etykieta", widget: "string"}
+          - {label: "Niebieska karta - tytuł", name: "niebieska_tytul", widget: "string"}
+          - {label: "Niebieska karta - punkt 1", name: "niebieska_p1", widget: "string"}
+          - {label: "Niebieska karta - punkt 2", name: "niebieska_p2", widget: "string"}
+          - {label: "Niebieska karta - punkt 3", name: "niebieska_p3", widget: "string"}
+          - {label: "Niebieska karta - punkt 4", name: "niebieska_p4", widget: "string"}
+          - {label: "Kafelek 1 (Dokumentacja) - tytuł", name: "k1_tytul", widget: "string"}
+          - {label: "Kafelek 1 - opis", name: "k1_opis", widget: "string"}
+          - {label: "Kafelek 2 (Skierowania) - tytuł", name: "k2_tytul", widget: "string"}
+          - {label: "Kafelek 2 - opis", name: "k2_opis", widget: "string"}
+          - {label: "Kafelek 3 (Szczepienia) - tytuł", name: "k3_tytul", widget: "string"}
+          - {label: "Kafelek 3 - opis", name: "k3_opis", widget: "string"}
+          - {label: "Kafelek 4 (Dzienniczek) - tytuł", name: "k4_tytul", widget: "string"}
+          - {label: "Kafelek 4 - opis", name: "k4_opis", widget: "string"}
+          - {label: "Kafelek 5 (Profilaktyka) - tytuł", name: "k5_tytul", widget: "string"}
+          - {label: "Kafelek 5 - opis", name: "k5_opis", widget: "string"}
+          - {label: "Kafelek 6 (Historia wizyt) - tytuł", name: "k6_tytul", widget: "string"}
+          - {label: "Kafelek 6 - opis", name: "k6_opis", widget: "string"}
+          - {label: "Kafelek 7 (Zaświadczenia) - tytuł", name: "k7_tytul", widget: "string"}
+          - {label: "Kafelek 7 - opis", name: "k7_opis", widget: "string"}
+          - {label: "Kafelek 8 (Specjalistyka) - tytuł", name: "k8_tytul", widget: "string"}
+          - {label: "Kafelek 8 - opis", name: "k8_opis", widget: "string"}
+
+  # ========== SEKCJA WIEDZA ==========
+  - name: "wiedza"
+    label: "4. Sekcja WIEDZA (Nie tylko wizyta)"
+    files:
+      - file: "tresci/wiedza.md"
+        label: "Wiedza i wsparcie"
+        name: "wiedza"
+        fields:
+          - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
+          - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
+          - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
+          - {label: "Karta 1 - tag", name: "karta1_tag", widget: "string"}
+          - {label: "Karta 1 - tytuł", name: "karta1_tytul", widget: "string"}
+          - {label: "Karta 1 - opis", name: "karta1_opis", widget: "text"}
+          - {label: "Karta 1 - tekst linku", name: "karta1_link", widget: "string"}
+          - {label: "Karta 2 - tag", name: "karta2_tag", widget: "string"}
+          - {label: "Karta 2 - tytuł", name: "karta2_tytul", widget: "string"}
+          - {label: "Karta 2 - opis", name: "karta2_opis", widget: "text"}
+          - {label: "Karta 2 - tekst linku", name: "karta2_link", widget: "string"}
+          - {label: "Karta 3 - tag", name: "karta3_tag", widget: "string"}
+          - {label: "Karta 3 - tytuł", name: "karta3_tytul", widget: "string"}
+          - {label: "Karta 3 - opis", name: "karta3_opis", widget: "text"}
+          - {label: "Karta 3 - tekst linku", name: "karta3_link", widget: "string"}
+          - {label: "Ścieżka leczenia - tytuł", name: "kroki_tytul", widget: "string"}
+          - {label: "Krok 1", name: "krok1", widget: "string"}
+          - {label: "Krok 2", name: "krok2", widget: "string"}
+          - {label: "Krok 3", name: "krok3", widget: "string"}
+          - {label: "Krok 4", name: "krok4", widget: "string"}
+          - {label: "Krok 5", name: "krok5", widget: "string"}
+          - {label: "Krok 6", name: "krok6", widget: "string"}
+          - {label: "Aktywność - etykieta", name: "akt_etykieta", widget: "string"}
+          - {label: "Aktywność - tytuł", name: "akt_tytul", widget: "string"}
+          - {label: "Aktywność - opis", name: "akt_opis", widget: "text"}
+          - {label: "Aktywność - punkt 1", name: "akt_p1", widget: "string"}
+          - {label: "Aktywność - punkt 2", name: "akt_p2", widget: "string"}
+          - {label: "Aktywność - punkt 3", name: "akt_p3", widget: "string"}
+          - {label: "Aktywność - punkt 4", name: "akt_p4", widget: "string"}
+
+  # ========== SEKCJA PLACÓWKI (tylko intro) ==========
+  - name: "placowki"
+    label: "5. Sekcja PLACÓWKI (tylko intro)"
+    files:
+      - file: "tresci/placowki.md"
+        label: "Placówki - intro"
+        name: "placowki"
+        fields:
+          - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
+          - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
+          - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
+
+  # ========== SEKCJA BADANIA ==========
+  - name: "badania"
+    label: "6. Sekcja BADANIA (NFZ i komercyjne)"
+    files:
+      - file: "tresci/badania.md"
+        label: "Badania"
+        name: "badania"
+        fields:
+          - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
+          - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
+          - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
+          - {label: "Lewa karta - etykieta", name: "lewa_etykieta", widget: "string"}
+          - {label: "Lewa karta - punkt 1", name: "lewa_p1", widget: "string"}
+          - {label: "Lewa karta - punkt 2", name: "lewa_p2", widget: "string"}
+          - {label: "Lewa karta - punkt 3", name: "lewa_p3", widget: "string"}
+          - {label: "Lewa karta - punkt 4", name: "lewa_p4", widget: "string"}
+          - {label: "Niebieska karta - etykieta", name: "prawa_etykieta", widget: "string"}
+          - {label: "Niebieska karta - tytuł", name: "prawa_tytul", widget: "string"}
+          - {label: "Niebieska karta - opis", name: "prawa_opis", widget: "text"}
+          - {label: "Box - tytuł", name: "box_tytul", widget: "string"}
+          - {label: "Box - punkt 1", name: "box_p1", widget: "string"}
+          - {label: "Box - punkt 2", name: "box_p2", widget: "string"}
+          - {label: "Box - punkt 3", name: "box_p3", widget: "string"}
+          - {label: "Box - punkt 4", name: "box_p4", widget: "string"}
+          - {label: "Box - punkt 5", name: "box_p5", widget: "string"}
+
+  # ========== SEKCJA SPECJALIŚCI ==========
+  - name: "specjalisci"
+    label: "7. Sekcja SPECJALIŚCI"
+    files:
+      - file: "tresci/specjalisci.md"
+        label: "Specjaliści"
+        name: "specjalisci"
+        fields:
+          - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
+          - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
+          - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
+          - {label: "Pozycja 1", name: "p1", widget: "string"}
+          - {label: "Pozycja 2", name: "p2", widget: "string"}
+          - {label: "Pozycja 3", name: "p3", widget: "string"}
+          - {label: "Pozycja 4", name: "p4", widget: "string"}
+          - {label: "Pozycja 5", name: "p5", widget: "string"}
+          - {label: "Pozycja 6", name: "p6", widget: "string"}
+          - {label: "Wyszukiwarka - tytuł", name: "wyszuk_tytul", widget: "string"}
+          - {label: "Wyszukiwarka - podtytuł", name: "wyszuk_podtytul", widget: "string"}
+          - {label: "Pole 1 (placeholder)", name: "pole1", widget: "string"}
+          - {label: "Pole 2 (placeholder)", name: "pole2", widget: "string"}
+          - {label: "Pole 3 (placeholder)", name: "pole3", widget: "string"}
+          - {label: "Tekst przycisku", name: "przycisk", widget: "string"}
+
+  # ========== SEKCJA SKLEP ==========
+  - name: "sklep"
+    label: "8. Sekcja SKLEP medyczny"
+    files:
+      - file: "tresci/sklep.md"
+        label: "Sklep"
+        name: "sklep"
+        fields:
+          - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
+          - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
+          - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
+          - {label: "Produkt 1", name: "p1", widget: "string"}
+          - {label: "Produkt 2", name: "p2", widget: "string"}
+          - {label: "Produkt 3", name: "p3", widget: "string"}
+          - {label: "Produkt 4", name: "p4", widget: "string"}
+          - {label: "Aplikacja - tytuł", name: "app_tytul", widget: "string"}
+          - {label: "Aplikacja - podtytuł", name: "app_podtytul", widget: "string"}
+          - {label: "Aplikacja - tekst przycisku", name: "app_przycisk", widget: "string"}
+          - {label: "Aplikacja - funkcja 1", name: "app_f1", widget: "string"}
+          - {label: "Aplikacja - funkcja 2", name: "app_f2", widget: "string"}
+          - {label: "Aplikacja - funkcja 3", name: "app_f3", widget: "string"}
+          - {label: "Aplikacja - funkcja 4", name: "app_f4", widget: "string"}
+          - {label: "Aplikacja - funkcja 5", name: "app_f5", widget: "string"}
+
+  # ========== STOPKA ==========
+  - name: "footer"
+    label: "9. STOPKA"
+    files:
+      - file: "tresci/footer.md"
+        label: "Stopka - copyright"
+        name: "footer"
+        fields:
+          - {label: "Tekst copyright", name: "copyright", widget: "string"}
