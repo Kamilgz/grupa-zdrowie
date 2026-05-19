@@ -1,3 +1,3 @@
 ---
-copyright: © 2026 Grupa Zdrowie
+copyright: © 2026 Grupa Zdrowie™
 ---
