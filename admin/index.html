@@ -1,12 +1,426 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 <head>
 <meta charset="utf-8" />
+<title>Grupa Zdrowie - Panel CMS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex" />
-<title>Panel - Grupa Zdrowie</title>
 </head>
 <body>
+<!-- Decap CMS -->
 <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<!-- DecapBridge (logowanie email/hasło) -->
+<script src="https://unpkg.com/decap-cms-bridge-decapbridge@^0/dist/index.umd.min.js"></script>
+
+<script>
+/* ==============================================
+   GRUPA ZDROWIE - PANEL CMS Z LIVE PREVIEW
+   ============================================== */
+
+/* === STYLE PODGLĄDU === */
+CMS.registerPreviewStyle(`
+  :root {
+    --navy: #1B2D54;
+    --blue: #357AC5;
+    --green: #83C293;
+    --light: #F4F7FB;
+    --slate: #64748B;
+    --border: #E2E8F0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--navy);
+    line-height: 1.6;
+    padding: 24px;
+    background: white;
+    margin: 0;
+  }
+  .pv-section { margin-bottom: 24px; padding: 20px; border: 1px solid var(--border); border-radius: 16px; background: white; }
+  .pv-section--dark { background: var(--navy); color: white; }
+  .pv-section--light { background: var(--light); }
+  .pv-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); font-weight: 600; margin-bottom: 8px; }
+  .pv-section--dark .pv-label { color: rgba(255,255,255,0.5); }
+  .pv-h1 { font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1.15; margin: 0 0 12px; }
+  .pv-h1 em { color: var(--blue); font-style: normal; }
+  .pv-h2 { font-size: 22px; font-weight: 900; color: var(--navy); margin: 0 0 8px; }
+  .pv-section--dark .pv-h2 { color: white; }
+  .pv-h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin: 10px 0 6px; }
+  .pv-section--dark .pv-h3 { color: white; }
+  .pv-desc { font-size: 14px; color: var(--slate); margin: 0 0 14px; line-height: 1.6; }
+  .pv-section--dark .pv-desc { color: rgba(255,255,255,0.65); }
+  .pv-btn { display: inline-block; padding: 9px 18px; background: var(--navy); color: white; border-radius: 10px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-top: 6px; }
+  .pv-btn--blue { background: var(--blue); }
+  .pv-btn--white { background: white; color: var(--navy); }
+  .pv-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .pv-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .pv-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .pv-card { background: var(--light); border-radius: 12px; padding: 14px; }
+  .pv-section--dark .pv-card { background: rgba(255,255,255,0.07); }
+  .pv-card-num { font-size: 28px; font-weight: 900; color: var(--blue); opacity: 0.3; line-height: 1; }
+  .pv-card-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-top: 6px; }
+  .pv-section--dark .pv-card-title { color: white; }
+  .pv-card-desc { font-size: 11px; color: var(--slate); margin-top: 4px; line-height: 1.5; }
+  .pv-section--dark .pv-card-desc { color: rgba(255,255,255,0.5); }
+  .pv-tag { display: inline-block; padding: 4px 10px; background: rgba(53,122,197,0.1); color: var(--blue); border-radius: 6px; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .pv-tag--green { background: rgba(131,194,147,0.15); color: var(--green); }
+  .pv-tag--navy { background: rgba(27,45,84,0.08); color: var(--navy); }
+  .pv-link { color: var(--blue); font-size: 12px; font-weight: 600; margin-top: 10px; display: inline-block; border-bottom: 1px solid var(--blue); }
+  .pv-list { list-style: none; padding: 0; margin: 10px 0 0; }
+  .pv-list li { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--navy); }
+  .pv-section--dark .pv-list li { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.1); }
+  .pv-step { background: var(--light); padding: 10px; border-radius: 8px; margin-bottom: 6px; }
+  .pv-step-num { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate); font-weight: 600; }
+  .pv-step-text { font-size: 12px; color: var(--navy); font-weight: 600; margin-top: 4px; }
+  .pv-field { background: var(--light); padding: 10px 14px; border-radius: 8px; color: var(--slate); font-size: 13px; margin-bottom: 6px; }
+  .pv-empty { color: #c8c8c8; font-style: italic; }
+  .pv-note { font-size: 11px; color: #999; font-style: italic; margin-top: 12px; padding-top: 12px; border-top: 1px dashed #ddd; }
+`);
+
+/* === FUNKCJA POMOCNICZA - zwraca tekst lub placeholder === */
+function tekst(wartosc, placeholder) {
+  if (wartosc && String(wartosc).trim()) return String(wartosc);
+  return h('span', {className: 'pv-empty'}, placeholder || '(pusto)');
+}
+
+/* === FUNKCJA POMOCNICZA - pobiera pole z entry === */
+function pole(entry, klucz) {
+  return entry.getIn(['data', klucz]);
+}
+
+/* ====================================================
+   1. PREVIEW HERO
+   ==================================================== */
+var HeroPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    return h('div', {className: 'pv-section'},
+      h('div', {className: 'pv-label'}, tekst(pole(e, 'tag'), 'Etykieta')),
+      h('div', {className: 'pv-h1'},
+        tekst(pole(e, 'tytul_linia_1'), 'Tytuł - linia 1'),
+        h('br'),
+        h('em', {}, tekst(pole(e, 'tytul_linia_2'), 'Tytuł - linia 2'))
+      ),
+      h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...')),
+      h('div', {},
+        h('span', {className: 'pv-btn'}, tekst(pole(e, 'przycisk_1'), 'Przycisk 1')),
+        h('span', {className: 'pv-btn pv-btn--blue'}, tekst(pole(e, 'przycisk_2'), 'Przycisk 2'))
+      )
+    );
+  }
+});
+
+/* ====================================================
+   2. PREVIEW MODUŁY
+   ==================================================== */
+var ModulyPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    function modul(num, tytulKlucz, opisKlucz) {
+      return h('div', {className: 'pv-card'},
+        h('div', {className: 'pv-card-num'}, '0' + num),
+        h('div', {className: 'pv-card-title'}, tekst(pole(e, tytulKlucz), 'Tytuł modułu')),
+        h('div', {className: 'pv-card-desc'}, tekst(pole(e, opisKlucz), 'Opis modułu...'))
+      );
+    }
+    return h('div', {className: 'pv-section pv-section--dark'},
+      h('div', {className: 'pv-h2'}, 'Trzy moduły platformy'),
+      h('div', {className: 'pv-grid-3'},
+        modul(1, 'modul1_tytul', 'modul1_opis'),
+        modul(2, 'modul2_tytul', 'modul2_opis'),
+        modul(3, 'modul3_tytul', 'modul3_opis')
+      )
+    );
+  }
+});
+
+/* ====================================================
+   3. PREVIEW KONTO PACJENTA
+   ==================================================== */
+var KontoPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    function fn(tytulKlucz, opisKlucz) {
+      return h('div', {className: 'pv-card'},
+        h('div', {className: 'pv-card-title'}, tekst(pole(e, tytulKlucz), 'Tytuł')),
+        h('div', {className: 'pv-card-desc'}, tekst(pole(e, opisKlucz), 'Opis'))
+      );
+    }
+    return h('div', {},
+      // Intro
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h2'}, tekst(pole(e, 'naglowek'), 'Nagłówek')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...'))
+      ),
+      // 4 funkcje (biała karta)
+      h('div', {className: 'pv-section pv-section--light'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'karta_etykieta'), 'Etykieta karty')),
+        h('div', {className: 'pv-grid-2'},
+          fn('f1_tytul', 'f1_opis'),
+          fn('f2_tytul', 'f2_opis'),
+          fn('f3_tytul', 'f3_opis'),
+          fn('f4_tytul', 'f4_opis')
+        )
+      ),
+      // Niebieska karta
+      h('div', {className: 'pv-section pv-section--dark'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'niebieska_etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h3'}, tekst(pole(e, 'niebieska_tytul'), 'Tytuł')),
+        h('ul', {className: 'pv-list'},
+          h('li', {}, tekst(pole(e, 'niebieska_p1'), 'Punkt 1')),
+          h('li', {}, tekst(pole(e, 'niebieska_p2'), 'Punkt 2')),
+          h('li', {}, tekst(pole(e, 'niebieska_p3'), 'Punkt 3')),
+          h('li', {}, tekst(pole(e, 'niebieska_p4'), 'Punkt 4'))
+        )
+      ),
+      // 8 małych kafelków
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, '8 kafelków z ikonkami'),
+        h('div', {className: 'pv-grid-4'},
+          fn('k1_tytul', 'k1_opis'),
+          fn('k2_tytul', 'k2_opis'),
+          fn('k3_tytul', 'k3_opis'),
+          fn('k4_tytul', 'k4_opis'),
+          fn('k5_tytul', 'k5_opis'),
+          fn('k6_tytul', 'k6_opis'),
+          fn('k7_tytul', 'k7_opis'),
+          fn('k8_tytul', 'k8_opis')
+        )
+      )
+    );
+  }
+});
+
+/* ====================================================
+   4. PREVIEW WIEDZA
+   ==================================================== */
+var WiedzaPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    function karta(tagK, tytK, opisK, lnkK, kolor) {
+      return h('div', {className: 'pv-card'},
+        h('span', {className: 'pv-tag pv-tag--' + kolor}, tekst(pole(e, tagK), 'Tag')),
+        h('div', {className: 'pv-h3'}, tekst(pole(e, tytK), 'Tytuł')),
+        h('p', {className: 'pv-card-desc', style: {fontSize: '12px'}}, tekst(pole(e, opisK), 'Opis...')),
+        h('span', {className: 'pv-link'}, tekst(pole(e, lnkK), 'Link →'))
+      );
+    }
+    function krok(num, klucz) {
+      return h('div', {className: 'pv-step'},
+        h('div', {className: 'pv-step-num'}, 'Krok ' + num),
+        h('div', {className: 'pv-step-text'}, tekst(pole(e, klucz), 'Tytuł kroku'))
+      );
+    }
+    return h('div', {},
+      // Intro
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h2'}, tekst(pole(e, 'naglowek'), 'Nagłówek')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...'))
+      ),
+      // 3 karty
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, '3 karty wiedzy'),
+        h('div', {className: 'pv-grid-3'},
+          karta('karta1_tag', 'karta1_tytul', 'karta1_opis', 'karta1_link', 'blue'),
+          karta('karta2_tag', 'karta2_tytul', 'karta2_opis', 'karta2_link', 'green'),
+          karta('karta3_tag', 'karta3_tytul', 'karta3_opis', 'karta3_link', 'navy')
+        )
+      ),
+      // Ścieżka kroków
+      h('div', {className: 'pv-section pv-section--light'},
+        h('div', {className: 'pv-h3'}, tekst(pole(e, 'kroki_tytul'), 'Tytuł ścieżki leczenia')),
+        h('div', {className: 'pv-grid-2'},
+          krok(1, 'krok1'),
+          krok(2, 'krok2'),
+          krok(3, 'krok3'),
+          krok(4, 'krok4'),
+          krok(5, 'krok5'),
+          krok(6, 'krok6')
+        )
+      ),
+      // Strefa aktywności
+      h('div', {className: 'pv-section pv-section--dark'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'akt_etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h3'}, tekst(pole(e, 'akt_tytul'), 'Tytuł')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'akt_opis'), 'Opis...')),
+        h('ul', {className: 'pv-list'},
+          h('li', {}, tekst(pole(e, 'akt_p1'), 'Punkt 1')),
+          h('li', {}, tekst(pole(e, 'akt_p2'), 'Punkt 2')),
+          h('li', {}, tekst(pole(e, 'akt_p3'), 'Punkt 3')),
+          h('li', {}, tekst(pole(e, 'akt_p4'), 'Punkt 4'))
+        )
+      )
+    );
+  }
+});
+
+/* ====================================================
+   5. PREVIEW PLACÓWKI (tylko intro)
+   ==================================================== */
+var PlacowkiPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    return h('div', {className: 'pv-section'},
+      h('div', {className: 'pv-label'}, tekst(pole(e, 'etykieta'), 'Etykieta')),
+      h('div', {className: 'pv-h2'}, tekst(pole(e, 'naglowek'), 'Nagłówek')),
+      h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...')),
+      h('p', {className: 'pv-note'}, '💡 Lista poradni specjalistycznych i mapa Polski nie są edytowalne — zostają na sztywno w kodzie.')
+    );
+  }
+});
+
+/* ====================================================
+   6. PREVIEW BADANIA
+   ==================================================== */
+var BadaniaPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    return h('div', {},
+      // Intro
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h2'}, tekst(pole(e, 'naglowek'), 'Nagłówek')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...'))
+      ),
+      // Lewa karta
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'lewa_etykieta'), 'Lewa karta')),
+        h('ul', {className: 'pv-list'},
+          h('li', {}, tekst(pole(e, 'lewa_p1'), 'Punkt 1')),
+          h('li', {}, tekst(pole(e, 'lewa_p2'), 'Punkt 2')),
+          h('li', {}, tekst(pole(e, 'lewa_p3'), 'Punkt 3')),
+          h('li', {}, tekst(pole(e, 'lewa_p4'), 'Punkt 4'))
+        )
+      ),
+      // Niebieska karta
+      h('div', {className: 'pv-section pv-section--dark'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'prawa_etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h3'}, tekst(pole(e, 'prawa_tytul'), 'Tytuł')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'prawa_opis'), 'Opis...')),
+        h('div', {className: 'pv-h3', style: {fontSize: '13px', marginTop: '14px'}}, tekst(pole(e, 'box_tytul'), 'Tytuł box')),
+        h('ul', {className: 'pv-list'},
+          h('li', {}, tekst(pole(e, 'box_p1'), 'Punkt 1')),
+          h('li', {}, tekst(pole(e, 'box_p2'), 'Punkt 2')),
+          h('li', {}, tekst(pole(e, 'box_p3'), 'Punkt 3')),
+          h('li', {}, tekst(pole(e, 'box_p4'), 'Punkt 4')),
+          h('li', {}, tekst(pole(e, 'box_p5'), 'Punkt 5'))
+        )
+      )
+    );
+  }
+});
+
+/* ====================================================
+   7. PREVIEW SPECJALIŚCI
+   ==================================================== */
+var SpecjalisciPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    return h('div', {},
+      // Intro
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h2'}, tekst(pole(e, 'naglowek'), 'Nagłówek')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...'))
+      ),
+      // 6 pozycji listy
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, 'Lista usług'),
+        h('div', {className: 'pv-grid-2'},
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p1'), 'Pozycja 1')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p2'), 'Pozycja 2')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p3'), 'Pozycja 3')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p4'), 'Pozycja 4')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p5'), 'Pozycja 5')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p6'), 'Pozycja 6'))
+        )
+      ),
+      // Wyszukiwarka
+      h('div', {className: 'pv-section pv-section--light'},
+        h('div', {className: 'pv-h3'}, tekst(pole(e, 'wyszuk_tytul'), 'Tytuł wyszukiwarki')),
+        h('p', {className: 'pv-desc', style: {fontSize: '12px'}}, tekst(pole(e, 'wyszuk_podtytul'), 'Podtytuł...')),
+        h('div', {className: 'pv-field'}, tekst(pole(e, 'pole1'), 'Pole 1')),
+        h('div', {className: 'pv-field'}, tekst(pole(e, 'pole2'), 'Pole 2')),
+        h('div', {className: 'pv-field'}, tekst(pole(e, 'pole3'), 'Pole 3')),
+        h('div', {style: {marginTop: '10px'}},
+          h('span', {className: 'pv-btn'}, tekst(pole(e, 'przycisk'), 'Wyszukaj'))
+        )
+      )
+    );
+  }
+});
+
+/* ====================================================
+   8. PREVIEW SKLEP
+   ==================================================== */
+var SklepPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    return h('div', {},
+      // Intro
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, tekst(pole(e, 'etykieta'), 'Etykieta')),
+        h('div', {className: 'pv-h2'}, tekst(pole(e, 'naglowek'), 'Nagłówek')),
+        h('p', {className: 'pv-desc'}, tekst(pole(e, 'opis'), 'Opis...'))
+      ),
+      // 4 produkty
+      h('div', {className: 'pv-section'},
+        h('div', {className: 'pv-label'}, 'Kategorie produktów'),
+        h('div', {className: 'pv-grid-2'},
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p1'), 'Produkt 1')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p2'), 'Produkt 2')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p3'), 'Produkt 3')),
+          h('div', {className: 'pv-card pv-card-title'}, tekst(pole(e, 'p4'), 'Produkt 4'))
+        )
+      ),
+      // Karta aplikacji
+      h('div', {className: 'pv-section pv-section--dark'},
+        h('div', {className: 'pv-h3'}, tekst(pole(e, 'app_tytul'), 'Aplikacja mobilna')),
+        h('p', {className: 'pv-desc', style: {marginBottom: '10px'}}, tekst(pole(e, 'app_podtytul'), 'Podtytuł...')),
+        h('span', {className: 'pv-btn pv-btn--white'}, tekst(pole(e, 'app_przycisk'), 'Pobierz')),
+        h('ul', {className: 'pv-list', style: {marginTop: '14px'}},
+          h('li', {}, tekst(pole(e, 'app_f1'), 'Funkcja 1')),
+          h('li', {}, tekst(pole(e, 'app_f2'), 'Funkcja 2')),
+          h('li', {}, tekst(pole(e, 'app_f3'), 'Funkcja 3')),
+          h('li', {}, tekst(pole(e, 'app_f4'), 'Funkcja 4')),
+          h('li', {}, tekst(pole(e, 'app_f5'), 'Funkcja 5'))
+        )
+      )
+    );
+  }
+});
+
+/* ====================================================
+   9. PREVIEW FOOTER
+   ==================================================== */
+var FooterPreview = createClass({
+  render: function() {
+    var e = this.props.entry;
+    return h('div', {className: 'pv-section pv-section--dark', style: {textAlign: 'center'}},
+      h('p', {style: {color: 'rgba(255,255,255,0.5)', fontSize: '12px', margin: 0}},
+        tekst(pole(e, 'copyright'), 'Tekst copyright'))
+    );
+  }
+});
+
+/* ====================================================
+   REJESTRACJA WSZYSTKICH PREVIEW
+   Dla file collections rejestrujemy pod nazwą pliku.
+   Nasze pliki mają takie same nazwy jak kolekcje
+   (np. kolekcja "hero" zawiera plik "hero").
+   ==================================================== */
+CMS.registerPreviewTemplate('hero', HeroPreview);
+CMS.registerPreviewTemplate('moduly', ModulyPreview);
+CMS.registerPreviewTemplate('konto', KontoPreview);
+CMS.registerPreviewTemplate('wiedza', WiedzaPreview);
+CMS.registerPreviewTemplate('placowki', PlacowkiPreview);
+CMS.registerPreviewTemplate('badania', BadaniaPreview);
+CMS.registerPreviewTemplate('specjalisci', SpecjalisciPreview);
+CMS.registerPreviewTemplate('sklep', SklepPreview);
+CMS.registerPreviewTemplate('footer', FooterPreview);
+
+console.log('✅ Grupa Zdrowie - Preview templates załadowane');
+</script>
 </body>
 </html>
