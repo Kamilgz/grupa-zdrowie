@@ -1,0 +1,17 @@
+---
+etykieta: "Sklep medyczny"
+naglowek: "Diagnostyka i monitorowanie zdrowia w domu"
+opis: "Sprzęt i testy wspierające profilaktykę oraz codzienne monitorowanie zdrowia."
+p1: "Ciśnieniomierze"
+p2: "Szybkie testy diagnostyczne"
+p3: "Glukometry i akcesoria"
+p4: "Produkty profilaktyczne"
+app_tytul: "Aplikacja mobilna"
+app_podtytul: "Konto pacjenta zawsze pod ręką"
+app_przycisk: "Pobierz"
+app_f1: "Dostęp do wyników i dokumentacji"
+app_f2: "Rejestracja na wizyty i telewizyty"
+app_f3: "Przypomnienia o lekach i badaniach"
+app_f4: "Dziennik pomiarów zdrowotnych"
+app_f5: "Programy profilaktyczne i ścieżki leczenia"
+---

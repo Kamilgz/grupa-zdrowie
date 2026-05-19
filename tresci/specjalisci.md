@@ -1,0 +1,17 @@
+---
+etykieta: "Sektor prywatny i NFZ"
+naglowek: "Specjalistyka prywatna i NFZ"
+opis: "Wizyty w poradniach specjalistycznych, stomatologia, rehabilitacja i zabiegi — szybkie terminy w całej Polsce."
+p1: "Wizyty specjalistyczne NFZ"
+p2: "Wizyty prywatne"
+p3: "Stomatolog"
+p4: "Rehabilitacja"
+p5: "Zabiegi rehabilitacyjne"
+p6: "Szybkie terminy"
+wyszuk_tytul: "Wyszukaj specjalistę lub usługę"
+wyszuk_podtytul: "Cała Polska — filtrowanie po usługach i lokalizacji"
+pole1: "Specjalista lub rodzaj usług"
+pole2: "Miasto lub wojewodztwo"
+pole3: "NFZ / Prywatnie / Oba"
+przycisk: "Wyszukaj"
+---
