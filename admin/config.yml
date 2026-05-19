@@ -1,0 +1,35 @@
+# ============================================================
+# KONFIGURACJA PANELU CMS - Grupa Zdrowie
+# ============================================================
+# Ten plik mówi panelowi co można edytować na stronie.
+# Każda sekcja "collection" = jeden ekran w panelu.
+# ============================================================
+
+# --- 1. POŁĄCZENIE Z DECAPBRIDGE (logowanie) ---
+# UWAGA: To trzeba zastąpić blokiem skopiowanym z DecapBridge!
+backend:
+  name: git-gateway
+  repo: Kamilgz/grupa-zdrowie
+  branch: main
+  identity_url: https://auth.decapbridge.com/sites/7e7a16ea-6f78-474a-a3f0-0954d862a182
+  gateway_url: https://gateway.decapbridge.com
+
+# --- 2. GDZIE ZAPISYWAĆ WGRANE OBRAZKI ---
+media_folder: "obrazki"
+public_folder: "/obrazki"
+
+# --- 3. CO MOŻNA EDYTOWAĆ ---
+collections:
+  - name: "tresci"
+    label: "Treści strony"
+    files:
+      - file: "tresci/hero.md"
+        name: "hero"
+        label: "Sekcja główna (hero)"
+        fields:
+          - { name: "tag", label: "Mała etykieta nad tytułem", widget: "string" }
+          - { name: "tytul_linia_1", label: "Tytuł - linia 1", widget: "string" }
+          - { name: "tytul_linia_2", label: "Tytuł - linia 2 (wyróżniona)", widget: "string" }
+          - { name: "opis", label: "Opis pod tytułem", widget: "text" }
+          - { name: "przycisk_1", label: "Przycisk 1 - tekst", widget: "string" }
+          - { name: "przycisk_2", label: "Przycisk 2 - tekst", widget: "string" }
