@@ -66,13 +66,13 @@
 <div class="hero-left">
 <div class="hero-platform-tag">
 <div class="dot"></div>
-<span>Platforma medyczna</span>
+<span data-hero="tag">Platforma medyczna</span>
 </div>
-<h1 class="hero-h1">Wszystkie usługi zdrowotne<br/>w jednym <em>koncie pacjenta</em></h1>
-<p class="hero-desc">Jedna deklaracja do POZ odblokowuje opiekę, dokumentację, edukację i monitoring zdrowia. POZ, specjalistyka, szpitale, rehabilitacja i opieka prywatna w jednym miejscu.</p>
+<h1 class="hero-h1"><span data-hero="tytul_linia_1">Wszystkie usługi zdrowotne</span><br/><em data-hero="tytul_linia_2">w jednym koncie pacjenta</em></h1>
+<p class="hero-desc" data-hero="opis">Jedna deklaracja do POZ odblokowuje opiekę, dokumentację, edukację i monitoring zdrowia. POZ, specjalistyka, szpitale, rehabilitacja i opieka prywatna w jednym miejscu.</p>
 <div class="hero-btns">
-<button class="btn btn-primary btn-lg">Otwórz konto pacjenta</button>
-<button class="btn btn-blue btn-lg">Pobierz aplikację</button>
+<button class="btn btn-primary btn-lg" data-hero="przycisk_1">Otwórz konto pacjenta</button>
+<button class="btn btn-blue btn-lg" data-hero="przycisk_2">Pobierz aplikację</button>
 </div>
 </div>
 <div class="hero-right" style="min-width:420px;max-width:480px;">
@@ -645,6 +645,27 @@ const hdr = document.querySelector('header');
 window.addEventListener('scroll', () => {
 hdr.classList.toggle('scrolled', window.scrollY > 10);
 });
+</script>
+<script>
+// =========================================================
+// CMS - automatyczne ładowanie tekstów z pliku tresci/hero.md
+// =========================================================
+fetch('tresci/hero.md')
+  .then(r => r.text())
+  .then(text => {
+    const m = text.match(/^---\n([\s\S]*?)\n---/);
+    if (!m) return;
+    const dane = {};
+    m[1].split('\n').forEach(linia => {
+      const [klucz, ...wartosc] = linia.split(':');
+      if (klucz) dane[klucz.trim()] = wartosc.join(':').trim().replace(/^["']|["']$/g, '');
+    });
+    document.querySelectorAll('[data-hero]').forEach(el => {
+      const k = el.dataset.hero;
+      if (dane[k]) el.textContent = dane[k];
+    });
+  })
+  .catch(() => {}); // jeśli się nie uda - zostają teksty domyślne
 </script>
 </body>
 </html>
