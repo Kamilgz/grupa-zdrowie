@@ -6,16 +6,16 @@ backend:
   gateway_url: https://gateway.decapbridge.com
   auth_type: ""
   auth_endpoint: oauth/external
-
+ 
 site_url: https://kamilgz.github.io/grupa-zdrowie/
 display_url: https://kamilgz.github.io/grupa-zdrowie/
 logo_url: https://kamilgz.github.io/grupa-zdrowie/
-
+ 
 publish_mode: simple
 media_folder: "media"
 public_folder: "/media"
 locale: "pl"
-
+ 
 collections:
   # ========== SEKCJA HERO (góra strony) ==========
   - name: "hero"
@@ -32,7 +32,7 @@ collections:
           - {label: "Tekst przycisku 1 (granatowy)", name: "przycisk_1", widget: "string"}
           - {label: "Tekst przycisku 2 (niebieski)", name: "przycisk_2", widget: "string"}
           - {label: "Obrazek pod przyciskami (pod 'Pobierz aplikację')", name: "obrazek", widget: "image", required: false, hint: "Klik 'Choose an image' aby podmienić. Zalecany rozmiar ok. 320x120px lub większy zachowując proporcje."}
-
+ 
   # ========== SEKCJA MODUŁY (3 kafelki) ==========
   - name: "moduly"
     label: "2. Sekcja MODUŁY (3 kafelki)"
@@ -47,7 +47,7 @@ collections:
           - {label: "Moduł 02 - opis", name: "modul2_opis", widget: "text"}
           - {label: "Moduł 03 - tytuł", name: "modul3_tytul", widget: "string"}
           - {label: "Moduł 03 - opis", name: "modul3_opis", widget: "text"}
-
+ 
   # ========== SEKCJA KONTO PACJENTA ==========
   - name: "konto"
     label: "3. Sekcja KONTO PACJENTA"
@@ -90,7 +90,7 @@ collections:
           - {label: "Kafelek 7 - opis", name: "k7_opis", widget: "string"}
           - {label: "Kafelek 8 (Specjalistyka) - tytuł", name: "k8_tytul", widget: "string"}
           - {label: "Kafelek 8 - opis", name: "k8_opis", widget: "string"}
-
+ 
   # ========== SEKCJA WIEDZA ==========
   - name: "wiedza"
     label: "4. Sekcja WIEDZA (Nie tylko wizyta)"
@@ -128,7 +128,7 @@ collections:
           - {label: "Aktywność - punkt 2", name: "akt_p2", widget: "string"}
           - {label: "Aktywność - punkt 3", name: "akt_p3", widget: "string"}
           - {label: "Aktywność - punkt 4", name: "akt_p4", widget: "string"}
-
+ 
   # ========== SEKCJA PLACÓWKI (tylko intro) ==========
   - name: "placowki"
     label: "5. Sekcja PLACÓWKI (tylko intro)"
@@ -140,7 +140,7 @@ collections:
           - {label: "Etykieta sekcji", name: "etykieta", widget: "string"}
           - {label: "Nagłówek H2", name: "naglowek", widget: "string"}
           - {label: "Opis pod nagłówkiem", name: "opis", widget: "text"}
-
+ 
   # ========== SEKCJA BADANIA ==========
   - name: "badania"
     label: "6. Sekcja BADANIA (NFZ i komercyjne)"
@@ -166,7 +166,7 @@ collections:
           - {label: "Box - punkt 3", name: "box_p3", widget: "string"}
           - {label: "Box - punkt 4", name: "box_p4", widget: "string"}
           - {label: "Box - punkt 5", name: "box_p5", widget: "string"}
-
+ 
   # ========== SEKCJA SPECJALIŚCI ==========
   - name: "specjalisci"
     label: "7. Sekcja SPECJALIŚCI"
@@ -190,7 +190,7 @@ collections:
           - {label: "Pole 2 (placeholder)", name: "pole2", widget: "string"}
           - {label: "Pole 3 (placeholder)", name: "pole3", widget: "string"}
           - {label: "Tekst przycisku", name: "przycisk", widget: "string"}
-
+ 
   # ========== SEKCJA SKLEP ==========
   - name: "sklep"
     label: "8. Sekcja SKLEP medyczny"
@@ -214,7 +214,7 @@ collections:
           - {label: "Aplikacja - funkcja 3", name: "app_f3", widget: "string"}
           - {label: "Aplikacja - funkcja 4", name: "app_f4", widget: "string"}
           - {label: "Aplikacja - funkcja 5", name: "app_f5", widget: "string"}
-
+ 
   # ========== STOPKA ==========
   - name: "footer"
     label: "9. STOPKA"
