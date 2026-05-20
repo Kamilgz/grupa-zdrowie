@@ -74,6 +74,7 @@
 <button class="btn btn-primary btn-lg" data-cms="hero.przycisk_1">Otwórz konto pacjenta</button>
 <button class="btn btn-blue btn-lg" data-cms="hero.przycisk_2">Pobierz aplikację</button>
 </div>
+<img class="hero-obrazek" data-cms-img="hero.obrazek" src="media/zespol-medyczny.svg" alt="Zespół medyczny" style="margin-top:24px;max-width:320px;width:100%;height:auto;display:block;border-radius:16px;"/>
 </div>
 <div class="hero-right" style="min-width:420px;max-width:480px;">
 <div class="patient-card">
@@ -665,10 +666,21 @@ if (document.readyState !== 'loading') initMap();
   }
   
   function podstaw(sekcja, dane){
+    // 1) Podmień teksty (atrybut data-cms)
     document.querySelectorAll('[data-cms^="'+sekcja+'."]').forEach(el => {
       const klucz = el.dataset.cms.split('.')[1];
       if(dane[klucz] !== undefined && dane[klucz] !== ''){
         el.textContent = dane[klucz];
+      }
+    });
+    // 2) Podmień obrazki (atrybut data-cms-img)
+    document.querySelectorAll('[data-cms-img^="'+sekcja+'."]').forEach(el => {
+      const klucz = el.dataset.cmsImg.split('.')[1];
+      if(dane[klucz] !== undefined && dane[klucz] !== ''){
+        // usuń wiodący slash żeby ścieżka działała na github.io/grupa-zdrowie/
+        let sciezka = dane[klucz];
+        if(sciezka.startsWith('/')) sciezka = sciezka.substring(1);
+        el.src = sciezka;
       }
     });
   }
