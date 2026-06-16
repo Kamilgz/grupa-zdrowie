@@ -4,7 +4,7 @@ backend:
   branch: main
   identity_url: https://auth.decapbridge.com/sites/7e7a16ea-6f78-474a-a3f0-0954d862a182
   gateway_url: https://gateway.decapbridge.com
-  auth_type: ""
+  auth_type: "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"
   auth_endpoint: oauth/external
 
 site_url: https://kamilgz.github.io/grupa-zdrowie/
