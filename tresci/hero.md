@@ -7,5 +7,5 @@ opis: Jedna deklaracja do POZ odblokowuje opiekę, dokumentację, edukację i
   prywatna w jednym miejscu.
 przycisk_1: Otwórz konto pacjenta
 przycisk_2: Pobierz aplikację
-obrazek: /media/zespol-medyczny.svg
+obrazek: /media/12511.jpg
 ---
