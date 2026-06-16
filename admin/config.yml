@@ -1,7 +1,9 @@
-backend:
-  name: git-gateway
+yamlbackend:
+  name: github
   repo: Kamilgz/grupa-zdrowie
   branch: main
+  base_url: https://decapbridge.com
+  auth_endpoint: oauth/github/grupa-zdrowie
 
 local_backend: false
 
