@@ -1,25 +1,26 @@
-yamlbackend:
-  name: github
+backend:
+  name: git-gateway
   repo: Kamilgz/grupa-zdrowie
   branch: main
-  base_url: https://decapbridge.com
-  auth_endpoint: oauth/github/grupa-zdrowie
-
-local_backend: false
+  identity_url: https://auth.decapbridge.com/sites/7e7a16ea-6f78-474a-a3f0-0954d862a182
+  gateway_url: https://gateway.decapbridge.com
+  auth_type: ""
+  auth_endpoint: oauth/external
 
 site_url: https://kamilgz.github.io/grupa-zdrowie/
 display_url: https://kamilgz.github.io/grupa-zdrowie/
-logo_url: https://kamilgz.github.io/grupa-zdrowie/media/logo.png
+logo_url: https://kamilgz.github.io/grupa-zdrowie/
 
-locale: "pl"
-
+publish_mode: simple
 media_folder: "media"
 public_folder: "/media"
+locale: "pl"
 
 collections:
+  # ========== SEKCJA HERO (góra strony) ==========
   - name: "tresci"
     label: "🌐 Treści strony głównej"
-    description: "Edytuj teksty na stronie www.grupazdrowie.pl"
+    description: "Edytuj teksty na stronie głównej"
     files:
       - file: "tresci/hero.md"
         label: "1. Sekcja HERO (góra strony)"
@@ -31,7 +32,7 @@ collections:
           - {label: "Opis pod tytułem", name: "opis", widget: "text"}
           - {label: "Tekst przycisku 1 (granatowy)", name: "przycisk_1", widget: "string"}
           - {label: "Tekst przycisku 2 (niebieski)", name: "przycisk_2", widget: "string"}
-          - {label: "Obrazek pod przyciskami (pod 'Pobierz aplikację')", name: "obrazek", widget: "image", required: false, hint: "Klik 'Choose an image' aby podmienić. Zalecany rozmiar ok. 320x120px lub większy zachowując proporcje."}
+          - {label: "Obrazek pod przyciskami", name: "obrazek", widget: "image", required: false}
       
       - file: "tresci/moduly.md"
         label: "2. Sekcja MODUŁY (3 kafelki)"
@@ -91,8 +92,7 @@ collections:
           - {label: "Krok 2 - tytuł", name: "krok_2", widget: "string"}
           - {label: "Krok 3 - tytuł", name: "krok_3", widget: "string"}
           - {label: "Krok 4 - tytuł", name: "krok_4", widget: "string"}
-      
-      - file: "tresci/placowki.md"
+- file: "tresci/placowki.md"
         label: "5. Sekcja PLACÓWKI (lista i mapa)"
         name: "placowki"
         fields:
@@ -150,9 +150,7 @@ collections:
         fields:
           - {label: "Tekst copyright", name: "copyright", widget: "string"}
 
-  # =====================================================
-  # PLACÓWKA PŁOŃSK - pełna podstrona placówki
-  # =====================================================
+  # ========== PLACÓWKA PŁOŃSK ==========
   - name: "placowka_plonsk"
     label: "🏥 Placówka: Płońsk"
     description: "Edycja pełnej podstrony placówki w Płońsku"
@@ -161,98 +159,71 @@ collections:
         label: "Grupa Zdrowie Płońsk - dane placówki"
         name: "placowka_plonsk"
         fields:
-          # === DANE PODSTAWOWE ===
           - {label: "Nazwa placówki", name: "nazwa", widget: "string"}
-          - {label: "Etykieta typu (np. 'Centrum Medyczne POZ')", name: "typ_etykieta", widget: "string"}
+          - {label: "Etykieta typu", name: "typ_etykieta", widget: "string"}
           - {label: "Adres", name: "adres", widget: "string"}
           - {label: "Telefon główny", name: "telefon_glowny", widget: "string"}
           - {label: "E-mail", name: "email", widget: "string"}
-          - {label: "Opis krótki (1-2 zdania w hero)", name: "opis_krotki", widget: "text"}
-          - {label: "Opis długi (sekcja 'O placówce')", name: "opis_dlugi", widget: "text", hint: "Możesz użyć wielu paragrafów - oddziel pustą linią"}
-          
-          # === PORADNIE I USŁUGI ===
-          - label: "POZ - lista (lekarz, pielęgniarka, położna)"
+          - {label: "Opis krótki", name: "opis_krotki", widget: "text"}
+          - {label: "Opis długi", name: "opis_dlugi", widget: "text"}
+          - label: "POZ - lista"
             name: "poz_lista"
             widget: "list"
             field: {label: "Pozycja", name: "nazwa", widget: "string"}
-            hint: "Klik '+ Add' aby dodać kolejną pozycję"
-          - label: "Poradnie specjalistyczne - lista"
+          - label: "Poradnie specjalistyczne"
             name: "specjalistyczne_lista"
             widget: "list"
             field: {label: "Nazwa poradni", name: "nazwa", widget: "string"}
-          - label: "Pracownie diagnostyczne - lista"
+          - label: "Pracownie diagnostyczne"
             name: "pracownie_lista"
             widget: "list"
             field: {label: "Nazwa pracowni", name: "nazwa", widget: "string"}
-          - label: "Usługi medyczne - lista"
+          - label: "Usługi medyczne"
             name: "uslugi_lista"
             widget: "list"
             field: {label: "Nazwa usługi", name: "nazwa", widget: "string"}
-          
-          # === OPIEKA KOORDYNOWANA ===
           - {label: "🎯 Czy placówka ma opiekę koordynowaną?", name: "opieka_koordynowana", widget: "boolean", default: true}
-          - {label: "Opis opieki koordynowanej (specyficzny dla tej placówki)", name: "opieka_opis", widget: "text", required: false}
-          - label: "Zakresy opieki koordynowanej w tej placówce"
+          - {label: "Opis opieki koordynowanej", name: "opieka_opis", widget: "text", required: false}
+          - label: "Zakresy opieki koordynowanej"
             name: "opieka_zakresy"
             widget: "list"
             field: {label: "Zakres", name: "nazwa", widget: "string"}
             required: false
-          
-          # === LEKARZE (lista dynamiczna) ===
-          - label: "👨‍⚕️ Lekarze"
+- label: "👨‍⚕️ Lekarze"
             name: "lekarze"
             widget: "list"
-            hint: "Klik '+ Add' aby dodać lekarza. Możesz przeciągać kolejność."
             fields:
               - {label: "Imię i nazwisko", name: "nazwisko", widget: "string"}
               - {label: "Specjalizacja", name: "specjalizacja", widget: "string", required: false}
               - {label: "Poradnia", name: "poradnia", widget: "string", required: false}
-          
-          # === PIELĘGNIARKI (lista dynamiczna) ===
           - label: "👩‍⚕️ Pielęgniarki i położne"
             name: "pielegniarki"
             widget: "list"
-            hint: "Klik '+ Add' aby dodać"
             fields:
               - {label: "Imię i nazwisko", name: "nazwisko", widget: "string"}
               - {label: "Specjalizacja", name: "specjalizacja", widget: "string", required: false}
-          
-          # === TELEFONY (lista dynamiczna) ===
           - label: "📞 Telefony / Rejestracja"
             name: "telefony"
             widget: "list"
-            hint: "Lista wszystkich telefonów - rejestracja, sekretariat, pracownie"
             fields:
               - {label: "Nazwa działu", name: "dzial", widget: "string"}
               - {label: "Numer telefonu", name: "numer", widget: "string"}
-          
-          # === DOKUMENTY PDF (lista dynamiczna) ===
           - label: "📄 Dokumenty PDF do pobrania"
             name: "dokumenty"
             widget: "list"
-            hint: "Wgraj PDF-y - klik 'Add' i wybierz plik z dysku"
             fields:
               - {label: "Nazwa dokumentu", name: "nazwa", widget: "string"}
               - {label: "Plik PDF", name: "url", widget: "file", required: false}
-          
-          # === CERTYFIKATY (lista dynamiczna) ===
           - label: "🏆 Certyfikaty PDF"
             name: "certyfikaty"
             widget: "list"
-            hint: "Lista certyfikatów jakości - PDF"
             fields:
               - {label: "Nazwa certyfikatu", name: "nazwa", widget: "string"}
               - {label: "Plik PDF", name: "url", widget: "file", required: false}
-          
-          # === OPŁATY ===
-          - {label: "💰 Treść sekcji 'Opłaty' (zostaw puste = pokażą się domyślne)", name: "oplaty_tresc", widget: "text", required: false}
-          
-          # === RODO ===
-          - {label: "🔒 Treść klauzuli RODO (zostaw puste = pokażą się domyślne)", name: "rodo_tresc", widget: "text", required: false}
+          - {label: "💰 Treść sekcji 'Opłaty'", name: "oplaty_tresc", widget: "text", required: false}
+          - {label: "🔒 Treść klauzuli RODO", name: "rodo_tresc", widget: "text", required: false}
 
-  # =====================================================
-  # OPIEKA KOORDYNOWANA - strona ogólna
-  # =====================================================
+  # ========== OPIEKA KOORDYNOWANA ==========
   - name: "opieka_koordynowana"
     label: "🎯 Strona: Opieka Koordynowana"
     description: "Edycja strony ogólnej o opiece koordynowanej"
@@ -262,8 +233,8 @@ collections:
         name: "opieka"
         fields:
           - {label: "Tytuł H1", name: "tytul", widget: "string"}
-          - {label: "Podtytuł (zdanie pod tytułem)", name: "podtytul", widget: "text"}
-          - {label: "Opis główny (sekcja 'Czym jest')", name: "opis_glowny", widget: "text"}
+          - {label: "Podtytuł", name: "podtytul", widget: "text"}
+          - {label: "Opis główny", name: "opis_glowny", widget: "text"}
           - {label: "Zakres 1 - tytuł", name: "zakres1_tytul", widget: "string"}
           - {label: "Zakres 1 - opis", name: "zakres1_opis", widget: "text"}
           - {label: "Zakres 2 - tytuł", name: "zakres2_tytul", widget: "string"}
