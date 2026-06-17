@@ -12,10 +12,10 @@
 .placowka-galeria-grid .pg-tall{grid-column:1;grid-row:1 / span 2}
 @media (max-width:760px){.placowka-galeria-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto}.placowka-galeria-grid figure{height:220px}.placowka-galeria-grid .pg-tall{grid-column:auto;grid-row:auto;height:300px}}
 /* === Redesign Płońsk: hero ze zdjęciem, sekcje foto, mapa === */
-.placowka-hero--photo{padding:0;background:var(--navy);position:relative;overflow:hidden}
+.placowka-hero--photo{padding:0;background:var(--navy);position:relative;overflow:hidden;min-height:clamp(540px,80vh,780px);display:flex;align-items:flex-end}
 .placowka-hero--photo .hero-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center}
 .placowka-hero--photo .hero-photo-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,45,84,.28) 0%,rgba(27,45,84,.46) 45%,rgba(27,45,84,.85) 100%)}
-.placowka-hero--photo .hero-photo-inner{position:relative;z-index:2;padding-top:150px;padding-bottom:48px}
+.placowka-hero--photo .hero-photo-inner{position:relative;z-index:2;width:100%;padding-top:120px;padding-bottom:56px}
 .placowka-breadcrumb--light,.placowka-breadcrumb--light a{color:rgba(255,255,255,.78)}
 .placowka-breadcrumb--light a:hover{color:#fff}
 .placowka-tag--light{background:rgba(255,255,255,.16);color:#fff}
@@ -44,7 +44,8 @@
 .about-photo img{max-height:300px}
 .kontakt-2col{grid-template-columns:1fr}
 .photo-band-inner{padding:48px 0}
-.placowka-hero--photo .hero-photo-inner{padding-top:96px;padding-bottom:40px}
+.placowka-hero--photo{min-height:clamp(440px,66vh,600px)}
+.placowka-hero--photo .hero-photo-inner{padding-top:80px;padding-bottom:44px}
 }
 /* === Poradnie – ładniejsze karty === */
 .poradnie-intro{font-size:15px;color:var(--slate);max-width:680px;margin-top:8px;margin-bottom:6px;line-height:1.7}
@@ -143,22 +144,6 @@
 </div>
 </section>
 
-<!-- STICKY MENU - spis treści -->
-<div class="sticky-menu">
-<div class="wrap">
-<div class="sticky-menu-inner">
-<a href="#o-placowce">O placówce</a>
-<a href="#poradnie">Poradnie i usługi</a>
-<a href="#opieka-koord">Opieka koordynowana</a>
-<a href="#lekarze">Lekarze</a>
-<a href="#pielegniarki">Pielęgniarki</a>
-<a href="#kontakt">Kontakt</a>
-<a href="#dokumenty">Dokumenty</a>
-<a href="#oplaty">Opłaty</a>
-<a href="#rodo">RODO</a>
-</div>
-</div>
-</div>
 
 <!-- 1. O PLACÓWCE -->
 <section id="o-placowce" class="placowka-section">
@@ -386,6 +371,9 @@
 <div class="logo-sub" style="color:rgba(255,255,255,.5)">Zdrowie na całe życie</div>
 </div>
 </a>
+</div>
+<div class="ftr-links-row">
+<a href="#rodo">RODO i ochrona danych</a>
 </div>
 <div class="ftr-copy">© 2026 Grupa Zdrowie. Wszelkie prawa zastrzeżone.</div>
 </div>
