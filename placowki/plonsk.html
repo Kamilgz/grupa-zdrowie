@@ -62,6 +62,23 @@
 .poradnia-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
 .poradnia-list li{position:relative;padding-left:22px;font-size:13.5px;color:var(--navy);line-height:1.45}
 .poradnia-list li::before{content:'';position:absolute;left:4px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* === Ogólny lifting wizualny === */
+.poradnia-sub{margin-bottom:16px}
+.poradnia-card{box-shadow:0 1px 3px rgba(27,45,84,.04)}
+.poradnia-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:transparent}
+.dynamic-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dynamic-list-item{border-radius:14px;padding:18px 20px;transition:transform .16s,box-shadow .16s,border-color .16s}
+.dynamic-list-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:transparent}
+.dynamic-list-item .nazwisko{font-size:15px;font-weight:600}
+.dynamic-list-item .nazwisko::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:9px;vertical-align:middle}
+.kontakt-row{border-radius:14px;transition:transform .16s,box-shadow .16s,border-color .16s}
+.kontakt-row:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--blue)}
+.doc-item{border-radius:14px;transition:transform .16s,box-shadow .16s,border-color .16s}
+.doc-item:hover{transform:translateY(-2px)}
+.opieka-koord-zakresy span{border:1px solid rgba(255,255,255,.25)}
+.placowka-meta-item{transition:transform .16s,box-shadow .16s}
+.placowka-meta-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+@media (max-width:680px){.dynamic-list{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -97,9 +114,6 @@
 <div class="hero-photo-bg" style="background-image:url('../media/plonsk-budynek.jpg')"></div>
 <div class="hero-photo-veil"></div>
 <div class="wrap hero-photo-inner">
-<div class="placowka-tag placowka-tag--light">
-<span data-cms="placowka.typ_etykieta">Centrum Medyczne</span>
-</div>
 <h1 class="placowka-h1 placowka-h1--light" data-cms="placowka.nazwa">Grupa Zdrowie Płońsk</h1>
 <p class="hero-desc hero-desc--light" style="max-width:640px" data-cms="placowka.opis_krotki">Krótki opis placówki - możesz go edytować w panelu CMS. Wpisz tu np. zakres usług w jednym zdaniu.</p>
 <div class="hero-cta">
@@ -114,15 +128,15 @@
 <div class="wrap">
 <div class="placowka-meta">
 <div class="placowka-meta-item">
-<div class="placowka-meta-label">📍 Adres</div>
+<div class="placowka-meta-label">Adres</div>
 <div class="placowka-meta-value" data-cms="placowka.adres">09-100 Płońsk, ul. Sienkiewicza 7</div>
 </div>
 <div class="placowka-meta-item">
-<div class="placowka-meta-label">📞 Telefon</div>
+<div class="placowka-meta-label">Telefon</div>
 <div class="placowka-meta-value"><a data-cms="placowka.telefon_glowny" data-cms-href="placowka.telefon_glowny_link" href="tel:227491030">22 749 10 30</a></div>
 </div>
 <div class="placowka-meta-item">
-<div class="placowka-meta-label">✉️ E-mail</div>
+<div class="placowka-meta-label">E-mail</div>
 <div class="placowka-meta-value"><a data-cms="placowka.email" data-cms-href-mailto="placowka.email" href="mailto:plonsk@grupazdrowie.pl">plonsk@grupazdrowie.pl</a></div>
 </div>
 </div>
@@ -185,13 +199,8 @@
 <p class="poradnie-intro">Świadczenia w ramach NFZ i komercyjnie — opieka podstawowa, poradnie specjalistyczne, diagnostyka i zabiegi w jednym miejscu.</p>
 <div class="poradnie-grid">
 <div class="poradnia-card poradnia-card--blue">
-<div class="poradnia-head">
-<span class="poradnia-ikona">🏥</span>
-<div>
 <div class="poradnia-title">Podstawowa Opieka Zdrowotna (POZ)</div>
 <div class="poradnia-sub">Opieka podstawowa i środowiskowa</div>
-</div>
-</div>
 <ul class="poradnia-list" data-cms-list="placowka.poz_lista" data-template="poradnia-li">
 <li>Lekarz POZ</li>
 <li>Pielęgniarka środowiskowa</li>
@@ -199,37 +208,22 @@
 </ul>
 </div>
 <div class="poradnia-card poradnia-card--navy">
-<div class="poradnia-head">
-<span class="poradnia-ikona">👨‍⚕️</span>
-<div>
 <div class="poradnia-title">Poradnie specjalistyczne</div>
 <div class="poradnia-sub">Konsultacje u lekarzy specjalistów</div>
-</div>
-</div>
 <ul class="poradnia-list" data-cms-list="placowka.specjalistyczne_lista" data-template="poradnia-li">
 <li>Wpisz poradnie w panelu CMS</li>
 </ul>
 </div>
 <div class="poradnia-card poradnia-card--green">
-<div class="poradnia-head">
-<span class="poradnia-ikona">🔬</span>
-<div>
 <div class="poradnia-title">Pracownie diagnostyczne</div>
 <div class="poradnia-sub">Badania i diagnostyka obrazowa</div>
-</div>
-</div>
 <ul class="poradnia-list" data-cms-list="placowka.pracownie_lista" data-template="poradnia-li">
 <li>Wpisz pracownie w panelu CMS</li>
 </ul>
 </div>
 <div class="poradnia-card poradnia-card--blue">
-<div class="poradnia-head">
-<span class="poradnia-ikona">💊</span>
-<div>
 <div class="poradnia-title">Usługi medyczne</div>
 <div class="poradnia-sub">Zabiegi i świadczenia komercyjne</div>
-</div>
-</div>
 <ul class="poradnia-list" data-cms-list="placowka.uslugi_lista" data-template="poradnia-li">
 <li>Wpisz usługi w panelu CMS</li>
 </ul>
