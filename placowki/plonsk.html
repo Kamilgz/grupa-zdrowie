@@ -29,7 +29,7 @@
 .kontakt-band{background:var(--white);border-bottom:1px solid var(--border);padding:24px 0}
 .kontakt-band .placowka-meta{margin-top:0}
 .about-grid{display:grid;grid-template-columns:0.95fr 1.18fr;gap:40px;align-items:center}
-.about-photo{margin:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:0 0 0 5px rgba(53,122,197,.12), var(--shadow-md);border:3px solid var(--blue);position:relative}
+.about-photo{margin:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md);position:relative}
 .about-photo img{width:100%;max-height:580px;object-fit:cover;display:block}
 .about-photo-cap{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 18px;color:#fff;background:linear-gradient(0deg,rgba(27,45,84,.86) 0%,rgba(27,45,84,.55) 55%,transparent 100%)}.about-photo-cap .cap-title{font-family:var(--font-demi);font-size:16px;font-weight:700}.about-photo-cap .cap-line{font-size:13px;opacity:.92;margin-top:3px}.about-photo-cap .cap-note{font-size:12px;opacity:.8;margin-top:8px;border-top:1px solid rgba(255,255,255,.18);padding-top:8px}
 .photo-band{position:relative;overflow:hidden;background:var(--navy);border-bottom:1px solid var(--border);min-height:clamp(480px,60vh,680px);display:flex;align-items:center}
@@ -83,9 +83,10 @@
 .placowka-meta-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 @media (max-width:680px){.dynamic-list{grid-template-columns:1fr}}
 /* === Wysuwany panel: oferta całej sieci === */
-.gz-drawer-tab{position:fixed;right:0;top:40%;transform:translateY(-50%);z-index:60;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600;padding:16px 12px;border-radius:14px 0 0 14px;box-shadow:-4px 6px 20px rgba(27,45,84,.22);writing-mode:vertical-rl;letter-spacing:.02em;transition:padding-right .16s,background .16s}
-.gz-drawer-tab span{transform:rotate(180deg);display:inline-block}
-.gz-drawer-tab:hover{padding-right:18px;background:#6fb381}
+.hero-topbar{position:absolute;top:0;left:0;right:0;z-index:4;padding-top:20px}
+.hero-topbar .wrap{display:flex;justify-content:flex-end}
+.gz-drawer-tab{display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600;padding:11px 20px;border-radius:99px;box-shadow:0 6px 18px rgba(27,45,84,.28);letter-spacing:.01em;transition:transform .15s,background .15s}
+.gz-drawer-tab:hover{transform:translateY(-1px);background:#6fb381}
 .gz-overlay{position:fixed;inset:0;background:rgba(27,45,84,.55);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:70}
 .gz-overlay.open{opacity:1;visibility:visible}
 .gz-drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,92vw);background:var(--white);z-index:80;box-shadow:-12px 0 44px rgba(27,45,84,.28);transform:translateX(100%);transition:transform .34s cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column}
@@ -111,8 +112,8 @@
 .gz-cta .btn{justify-content:center;text-align:center}
 body.gz-open{overflow:hidden}
 @media (max-width:560px){
-.gz-drawer-tab{top:auto;bottom:16px;right:14px;writing-mode:horizontal-tb;padding:12px 16px;border-radius:14px}
-.gz-drawer-tab span{transform:none}
+.gz-drawer-tab{font-size:12px;padding:10px 16px}
+.hero-topbar{padding-top:14px}
 }
 </style>
 </head>
@@ -148,6 +149,7 @@ body.gz-open{overflow:hidden}
 <section class="placowka-hero placowka-hero--photo">
 <div class="hero-photo-bg" style="background-image:url('../media/plonsk-budynek.jpg')"></div>
 <div class="hero-photo-veil"></div>
+<div class="hero-topbar"><div class="wrap"><button class="gz-drawer-tab" onclick="gzDrawer(true)" aria-label="Większa możliwość leczenia — kliknij po więcej">Większa możliwość leczenia ›</button></div></div>
 <div class="wrap hero-photo-inner">
 <h1 class="placowka-h1 placowka-h1--light" data-cms="placowka.nazwa">Grupa Zdrowie Płońsk</h1>
 <p class="hero-desc hero-desc--light" style="max-width:640px" data-cms="placowka.opis_krotki">Krótki opis placówki - możesz go edytować w panelu CMS. Wpisz tu np. zakres usług w jednym zdaniu.</p>
@@ -381,7 +383,6 @@ body.gz-open{overflow:hidden}
 </div>
 
 <!-- WYSUWANY PANEL: oferta całej sieci -->
-<button class="gz-drawer-tab" onclick="gzDrawer(true)" aria-label="Większa możliwość leczenia — kliknij po więcej"><span>Większa możliwość leczenia &nbsp;›</span></button>
 <div class="gz-overlay" id="gzOverlay" onclick="gzDrawer(false)"></div>
 <aside class="gz-drawer" id="gzDrawer" aria-hidden="true">
 <button class="gz-drawer-close" onclick="gzDrawer(false)" aria-label="Zamknij panel">×</button>
