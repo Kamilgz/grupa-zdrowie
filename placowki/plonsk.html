@@ -46,6 +46,22 @@
 .photo-band-inner{padding:48px 0}
 .placowka-hero--photo .hero-photo-inner{padding-top:96px;padding-bottom:40px}
 }
+/* === Poradnie – ładniejsze karty === */
+.poradnie-intro{font-size:15px;color:var(--slate);max-width:680px;margin-top:8px;margin-bottom:6px;line-height:1.7}
+.poradnia-card{position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s}
+.poradnia-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue)}
+.poradnia-card--navy::before{background:var(--navy)}
+.poradnia-card--green::before{background:var(--green)}
+.poradnia-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:transparent}
+.poradnia-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.poradnia-ikona{flex-shrink:0;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(53,122,197,.1)}
+.poradnia-card--navy .poradnia-ikona{background:rgba(27,45,84,.1)}
+.poradnia-card--green .poradnia-ikona{background:rgba(131,194,147,.2)}
+.poradnia-title{font-family:var(--font-demi);font-size:15px;font-weight:700;color:var(--navy);line-height:1.25}
+.poradnia-sub{font-size:12px;color:var(--slate);margin-top:2px;font-weight:400}
+.poradnia-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.poradnia-list li{position:relative;padding-left:22px;font-size:13.5px;color:var(--navy);line-height:1.45}
+.poradnia-list li::before{content:'';position:absolute;left:4px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--green)}
 </style>
 </head>
 
@@ -81,13 +97,6 @@
 <div class="hero-photo-bg" style="background-image:url('../media/plonsk-budynek.jpg')"></div>
 <div class="hero-photo-veil"></div>
 <div class="wrap hero-photo-inner">
-<div class="placowka-breadcrumb placowka-breadcrumb--light">
-<a href="../index.html">Strona główna</a>
-<span class="sep">›</span>
-<a href="../index.html#placowki">Placówki</a>
-<span class="sep">›</span>
-<span data-cms="placowka.nazwa">Grupa Zdrowie Płońsk</span>
-</div>
 <div class="placowka-tag placowka-tag--light">
 <span data-cms="placowka.typ_etykieta">Centrum Medyczne</span>
 </div>
@@ -132,7 +141,6 @@
 <a href="#kontakt">Kontakt</a>
 <a href="#dokumenty">Dokumenty</a>
 <a href="#oplaty">Opłaty</a>
-<a href="#certyfikaty">Certyfikaty</a>
 <a href="#rodo">RODO</a>
 </div>
 </div>
@@ -174,29 +182,54 @@
 <div class="wrap">
 <span class="section-label">Zakres usług</span>
 <h2>Poradnie i usługi medyczne</h2>
+<p class="poradnie-intro">Świadczenia w ramach NFZ i komercyjnie — opieka podstawowa, poradnie specjalistyczne, diagnostyka i zabiegi w jednym miejscu.</p>
 <div class="poradnie-grid">
-<div class="poradnia-card">
-<div class="poradnia-title">🏥 Podstawowa Opieka Zdrowotna (POZ)</div>
+<div class="poradnia-card poradnia-card--blue">
+<div class="poradnia-head">
+<span class="poradnia-ikona">🏥</span>
+<div>
+<div class="poradnia-title">Podstawowa Opieka Zdrowotna (POZ)</div>
+<div class="poradnia-sub">Opieka podstawowa i środowiskowa</div>
+</div>
+</div>
 <ul class="poradnia-list" data-cms-list="placowka.poz_lista" data-template="poradnia-li">
 <li>Lekarz POZ</li>
 <li>Pielęgniarka środowiskowa</li>
 <li>Położna środowiskowa</li>
 </ul>
 </div>
-<div class="poradnia-card">
-<div class="poradnia-title">👨‍⚕️ Poradnie specjalistyczne</div>
+<div class="poradnia-card poradnia-card--navy">
+<div class="poradnia-head">
+<span class="poradnia-ikona">👨‍⚕️</span>
+<div>
+<div class="poradnia-title">Poradnie specjalistyczne</div>
+<div class="poradnia-sub">Konsultacje u lekarzy specjalistów</div>
+</div>
+</div>
 <ul class="poradnia-list" data-cms-list="placowka.specjalistyczne_lista" data-template="poradnia-li">
 <li>Wpisz poradnie w panelu CMS</li>
 </ul>
 </div>
-<div class="poradnia-card">
-<div class="poradnia-title">🔬 Pracownie diagnostyczne</div>
+<div class="poradnia-card poradnia-card--green">
+<div class="poradnia-head">
+<span class="poradnia-ikona">🔬</span>
+<div>
+<div class="poradnia-title">Pracownie diagnostyczne</div>
+<div class="poradnia-sub">Badania i diagnostyka obrazowa</div>
+</div>
+</div>
 <ul class="poradnia-list" data-cms-list="placowka.pracownie_lista" data-template="poradnia-li">
 <li>Wpisz pracownie w panelu CMS</li>
 </ul>
 </div>
-<div class="poradnia-card">
-<div class="poradnia-title">💊 Usługi medyczne</div>
+<div class="poradnia-card poradnia-card--blue">
+<div class="poradnia-head">
+<span class="poradnia-ikona">💊</span>
+<div>
+<div class="poradnia-title">Usługi medyczne</div>
+<div class="poradnia-sub">Zabiegi i świadczenia komercyjne</div>
+</div>
+</div>
 <ul class="poradnia-list" data-cms-list="placowka.uslugi_lista" data-template="poradnia-li">
 <li>Wpisz usługi w panelu CMS</li>
 </ul>
@@ -320,22 +353,6 @@
 <li>Wysokość opłat ustalona została zgodnie z art. 28 ust. 4 ustawy z dnia 6 listopada 2008 r. o prawach pacjenta i Rzeczniku Praw Pacjenta.</li>
 </ol>
 </div>
-</div>
-</div>
-</section>
-
-<!-- 9. CERTYFIKATY -->
-<section id="certyfikaty" class="placowka-section">
-<div class="wrap">
-<span class="section-label">Jakość i bezpieczeństwo</span>
-<h2>Nasze certyfikaty</h2>
-<p>Certyfikaty jakości potwierdzające standardy świadczonych usług:</p>
-<div class="docs-grid" data-cms-list="placowka.certyfikaty" data-template="dokument">
-<a class="doc-item" href="#">
-<div class="doc-icon">PDF</div>
-<div class="doc-text">Nazwa certyfikatu</div>
-</a>
-<div class="empty-list-hint">💡 Dodaj certyfikaty w panelu CMS → Placówka Płońsk → Certyfikaty</div>
 </div>
 </div>
 </section>
