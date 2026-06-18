@@ -15,11 +15,19 @@ opis_dlugi: >-
 
   Posiadamy do dyspozycji pacjentów własną pracownię RTG wyposażoną w najnowszej generacji cyfrowy system rentgenowski Samsung XGEO GF5.
 poz_lista: []
+specjalistyczne_lista:
+  - Poradnia Kardiologiczna
+  - Poradnia Diabetologiczna
+  - Poradnia Endokrynologiczna
+  - Poradnia Pulmonologiczna
+  - Poradnia Nefrologiczna
+pracownie_lista:
+  - Pracownia RTG
 opieka_koordynowana: true
 opieka_zakresy:
   - Kardiologiczna
   - Diabetologiczna
-  - Rndokrynologiczna
+  - Endokrynologiczna
   - Pulmonologiczna
   - Nefrologiczna
 lekarze:
