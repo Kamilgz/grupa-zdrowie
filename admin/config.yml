@@ -238,7 +238,6 @@ collections:
         fields:
           # === DANE PODSTAWOWE ===
           - {label: "Nazwa placówki", name: "nazwa", widget: "string"}
-          - {label: "Etykieta typu (np. 'Centrum Medyczne POZ')", name: "typ_etykieta", widget: "string"}
           - {label: "Adres", name: "adres", widget: "string"}
           - {label: "Telefon główny", name: "telefon_glowny", widget: "string"}
           - {label: "E-mail", name: "email", widget: "string"}
@@ -308,15 +307,6 @@ collections:
             hint: "Wgraj PDF-y - klik 'Add' i wybierz plik z dysku"
             fields:
               - {label: "Nazwa dokumentu", name: "nazwa", widget: "string"}
-              - {label: "Plik PDF", name: "url", widget: "file", required: false}
-          
-          # === CERTYFIKATY (lista dynamiczna) ===
-          - label: "🏆 Certyfikaty PDF"
-            name: "certyfikaty"
-            widget: "list"
-            hint: "Lista certyfikatów jakości - PDF"
-            fields:
-              - {label: "Nazwa certyfikatu", name: "nazwa", widget: "string"}
               - {label: "Plik PDF", name: "url", widget: "file", required: false}
           
           # === OPŁATY ===
