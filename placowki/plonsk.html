@@ -83,10 +83,12 @@
 .placowka-meta-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 @media (max-width:680px){.dynamic-list{grid-template-columns:1fr}}
 /* === Wysuwany panel: oferta całej sieci === */
-.hero-topbar{position:absolute;top:0;left:0;right:0;z-index:4;padding-top:20px}
-.hero-topbar .wrap{display:flex;justify-content:flex-end}
-.gz-drawer-tab{display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600;padding:11px 20px;border-radius:99px;box-shadow:0 6px 18px rgba(27,45,84,.28);letter-spacing:.01em;transition:transform .15s,background .15s}
-.gz-drawer-tab:hover{transform:translateY(-1px);background:#6fb381}
+.gz-burger-btn{display:inline-flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:6px 4px;font-family:var(--font-book)}
+.gz-burger-label{font-size:13px;font-weight:500;color:var(--navy);white-space:nowrap}
+.gz-burger-icon{display:inline-flex;flex-direction:column;justify-content:center;gap:4px;width:24px;height:16px}
+.gz-burger-icon span{display:block;height:2px;width:100%;background:var(--navy);border-radius:2px;transition:background .15s,transform .15s}
+.gz-burger-btn:hover .gz-burger-icon span{background:var(--blue)}
+.gz-burger-btn:hover .gz-burger-label{color:var(--blue)}
 .gz-overlay{position:fixed;inset:0;background:rgba(27,45,84,.55);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:70}
 .gz-overlay.open{opacity:1;visibility:visible}
 .gz-drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,92vw);background:var(--white);z-index:80;box-shadow:-12px 0 44px rgba(27,45,84,.28);transform:translateX(100%);transition:transform .34s cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column}
@@ -112,8 +114,7 @@
 .gz-cta .btn{justify-content:center;text-align:center}
 body.gz-open{overflow:hidden}
 @media (max-width:560px){
-.gz-drawer-tab{font-size:12px;padding:10px 16px}
-.hero-topbar{padding-top:14px}
+.gz-burger-label{display:none}
 }
 </style>
 </head>
@@ -140,6 +141,7 @@ body.gz-open{overflow:hidden}
 <div class="hdr-actions">
 <a class="btn btn-outline" href="../index.html">← Powrót</a>
 <a class="btn btn-blue" href="#kontakt">Kontakt</a>
+<button class="gz-burger-btn" onclick="gzDrawer(true)" aria-label="Dowiedz się więcej — rozwiń opcje"><span class="gz-burger-label">Dowiedz się więcej</span><span class="gz-burger-icon"><span></span><span></span><span></span></span></button>
 </div>
 </div>
 </div>
@@ -149,7 +151,6 @@ body.gz-open{overflow:hidden}
 <section class="placowka-hero placowka-hero--photo">
 <div class="hero-photo-bg" style="background-image:url('../media/plonsk-budynek.jpg')"></div>
 <div class="hero-photo-veil"></div>
-<div class="hero-topbar"><div class="wrap"><button class="gz-drawer-tab" onclick="gzDrawer(true)" aria-label="Większa możliwość leczenia — kliknij po więcej">Większa możliwość leczenia ›</button></div></div>
 <div class="wrap hero-photo-inner">
 <h1 class="placowka-h1 placowka-h1--light" data-cms="placowka.nazwa">Grupa Zdrowie Płońsk</h1>
 <p class="hero-desc hero-desc--light" style="max-width:640px" data-cms="placowka.opis_krotki">Krótki opis placówki - możesz go edytować w panelu CMS. Wpisz tu np. zakres usług w jednym zdaniu.</p>
