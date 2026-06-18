@@ -159,6 +159,7 @@
 </footer>
 
 <!-- ============== JAVASCRIPT - LOADER CMS Z OBSŁUGĄ LIST DYNAMICZNYCH ============== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 <script>
 (function(){
 const SEKCJA = 'placowka';
@@ -238,6 +239,14 @@ result[key] = val;
 }
 return result;
 }
+function parseFrontmatter(text){
+var m = text.match(/^\uFEFF?---\s*\r?\n([\s\S]*?)\r?\n---/);
+var fm = m ? m[1] : text.replace(/^\uFEFF?---\s*\r?\n?/,'').replace(/\r?\n?---\s*$/,'');
+if(window.jsyaml && window.jsyaml.load){
+try { var o = window.jsyaml.load(fm); if(o && typeof o === 'object') return o; } catch(e){ console.warn('js-yaml fallback:', e); }
+}
+return parseYAML(text);
+}
 // Podstawia teksty (data-cms) i atrybuty (data-cms-href, data-cms-href-mailto)
 function podstaw(dane){
 // Teksty
@@ -245,10 +254,12 @@ document.querySelectorAll('[data-cms^="'+SEKCJA+'."]').forEach(el => {
 const klucz = el.dataset.cms.split('.')[1];
 if(dane[klucz] !== undefined && dane[klucz] !== ''){
 // Jeśli to multiline z HTML, użyj innerHTML
-if(typeof dane[klucz] === 'string' && dane[klucz].includes('\n')){
-el.innerHTML = '<p>' + dane[klucz].split('\n\n').join('</p><p>') + '</p>';
+var _v = dane[klucz];
+if(typeof _v === 'string' && _v.indexOf('\n') !== -1){
+var _parts = _v.split(/\n\s*\n/).map(function(s){return s.trim();}).filter(Boolean);
+el.innerHTML = _parts.map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
 } else {
-el.textContent = dane[klucz];
+el.textContent = _v;
 }
 }
 });
@@ -318,7 +329,7 @@ el.style.display = 'none';
 fetch(SCIEZKA_MD)
 .then(r => r.ok ? r.text() : Promise.reject('Nie udało się załadować ' + SCIEZKA_MD))
 .then(text => {
-const dane = parseYAML(text);
+const dane = parseFrontmatter(text);
 console.log('CMS dane Płońska:', dane);
 podstaw(dane);
 })
