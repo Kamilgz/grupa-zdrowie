@@ -1,6 +1,5 @@
 ---
 nazwa: "Grupa Zdrowie Płońsk"
-typ_etykieta: "Centrum Medyczne POZ"
 adres: "09-100 Płońsk, ul. Sienkiewicza 7"
 telefon_glowny: "22 749 10 30"
 email: "plonsk@grupazdrowie.pl"
@@ -61,12 +60,6 @@ dokumenty:
   - nazwa: "Deklaracja wyboru lekarza POZ"
     url: "#"
   - nazwa: "Deklaracja wyboru pielęgniarki/położnej"
-    url: "#"
-
-certyfikaty:
-  - nazwa: "Certyfikat 1 - wpisz nazwę"
-    url: "#"
-  - nazwa: "Certyfikat 2 - wpisz nazwę"
     url: "#"
 
 oplaty_tresc: ""
