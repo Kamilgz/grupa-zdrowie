@@ -70,7 +70,7 @@
 .poradnia-card{box-shadow:0 1px 3px rgba(27,45,84,.04)}
 .poradnia-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:transparent}
 .dynamic-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.dynamic-list-item{border-radius:14px;padding:18px 20px;transition:transform .16s,box-shadow .16s,border-color .16s}
+.dynamic-list-item{border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm);transition:transform .16s,box-shadow .16s,border-color .16s}
 .dynamic-list-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:transparent}
 .dynamic-list-item .nazwisko{font-size:15px;font-weight:600}
 .dynamic-list-item .nazwisko::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:9px;vertical-align:middle}
@@ -83,11 +83,12 @@
 .placowka-meta-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 @media (max-width:680px){.dynamic-list{grid-template-columns:1fr}}
 /* === Wysuwany panel: oferta całej sieci === */
-.gz-burger-btn{display:inline-flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:6px 4px;font-family:var(--font-book)}
+.hdr-center{flex:1;display:flex;justify-content:center;align-items:center;min-width:0}
+.gz-burger-btn{display:inline-flex;align-items:center;gap:11px;background:var(--white);border:1.5px solid var(--border);cursor:pointer;padding:9px 20px;border-radius:99px;font-family:var(--font-book);box-shadow:var(--shadow-sm);transition:border-color .15s,box-shadow .15s,transform .15s}
 .gz-burger-label{font-size:13px;font-weight:500;color:var(--navy);white-space:nowrap}
-.gz-burger-icon{display:inline-flex;flex-direction:column;justify-content:center;gap:4px;width:24px;height:16px}
-.gz-burger-icon span{display:block;height:2px;width:100%;background:var(--navy);border-radius:2px;transition:background .15s,transform .15s}
-.gz-burger-btn:hover .gz-burger-icon span{background:var(--blue)}
+.gz-burger-icon{display:inline-flex;flex-direction:column;justify-content:center;gap:3.5px;width:16px;height:12px}
+.gz-burger-icon span{display:block;height:2px;width:100%;background:var(--blue);border-radius:2px;transition:background .15s}
+.gz-burger-btn:hover{border-color:var(--blue);box-shadow:var(--shadow-md);transform:translateY(-1px)}
 .gz-burger-btn:hover .gz-burger-label{color:var(--blue)}
 .gz-overlay{position:fixed;inset:0;background:rgba(27,45,84,.55);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:70}
 .gz-overlay.open{opacity:1;visibility:visible}
@@ -114,7 +115,7 @@
 .gz-cta .btn{justify-content:center;text-align:center}
 body.gz-open{overflow:hidden}
 @media (max-width:560px){
-.gz-burger-label{display:none}
+.gz-burger-label{display:none}.gz-burger-btn{padding:8px 12px}.hdr-actions .btn{padding:7px 12px;font-size:12px}
 }
 </style>
 </head>
@@ -132,16 +133,12 @@ body.gz-open{overflow:hidden}
 <div class="logo-sub">Zdrowie na całe życie</div>
 </div>
 </a>
-<nav class="desk">
-<a href="../index.html">Strona główna</a>
-<a href="../index.html#placowki">Placówki</a>
-<a href="../index.html#wiedza">Usługi</a>
-<a href="../index.html#specjalisci">Specjaliści</a>
-</nav>
+<div class="hdr-center">
+<button class="gz-burger-btn" onclick="gzDrawer(true)" aria-label="Więcej możliwości leczenia — zobacz całą sieć Grupa Zdrowie"><span class="gz-burger-icon"><span></span><span></span><span></span></span><span class="gz-burger-label">Więcej możliwości leczenia</span></button>
+</div>
 <div class="hdr-actions">
-<a class="btn btn-outline" href="../index.html">← Powrót</a>
 <a class="btn btn-blue" href="#kontakt">Kontakt</a>
-<button class="gz-burger-btn" onclick="gzDrawer(true)" aria-label="Dowiedz się więcej — rozwiń opcje"><span class="gz-burger-label">Dowiedz się więcej</span><span class="gz-burger-icon"><span></span><span></span><span></span></span></button>
+<a class="btn btn-outline" href="../index.html">← Powrót</a>
 </div>
 </div>
 </div>
@@ -278,7 +275,7 @@ body.gz-open{overflow:hidden}
 </section>
 
 <!-- 4. LEKARZE -->
-<section id="lekarze" class="placowka-section has-bg">
+<section id="lekarze" class="placowka-section">
 <div class="wrap">
 <span class="section-label">Zespół lekarski</span>
 <h2>Nasi lekarze</h2>
