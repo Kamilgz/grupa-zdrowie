@@ -32,10 +32,15 @@ opieka_zakresy:
   - Nefrologiczna
 lekarze:
   - nazwisko: Marek Sajewicz
-    poradnia: Płońsk
-    specjalizacja: POZ
+    poradnia: POZ
+    specjalizacja: Internista
+  - nazwisko: Michał Rafał Andrzejczyk
+    specjalizacja: Internista
+    poradnia: POZ
 pielegniarki:
   - nazwisko: Jolanta Żochowska
+  - nazwisko: Mariola Łagodzińska
+    specjalizacja: Spec. piel. pediatrycznego
 telefony:
   - dzial: Rejestracja
     numer: 22 749 10 30
