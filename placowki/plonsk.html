@@ -117,7 +117,7 @@ body.gz-open{overflow:hidden}
 @media (max-width:560px){
 .gz-burger-label{display:none}.gz-burger-btn{padding:8px 12px}.hdr-actions .btn{padding:7px 12px;font-size:12px}
 }
-.placowka-nav{padding:52px 0 12px}.placowka-nav-head{max-width:680px;margin-bottom:28px}.placowka-nav-head h2{margin:8px 0 10px}.placowka-nav-head p{font-size:15px;color:var(--slate);line-height:1.7;font-weight:300}.placowka-nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.nav-card{display:flex;flex-direction:column;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:22px 20px;text-decoration:none;text-align:left;font-family:var(--font-book);cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .15s,box-shadow .15s,border-color .15s}.nav-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--blue)}.nav-card-ttl{font-family:var(--font-demi);font-size:15px;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:8px}.nav-card-ttl .arr{color:var(--blue);font-weight:400;font-size:16px}.nav-card-desc{font-size:12.5px;color:var(--slate);line-height:1.55;font-weight:300}.nav-card--cta{background:linear-gradient(135deg,var(--navy) 0%,#24407a 100%);border-color:transparent}.nav-card--cta .nav-card-ttl{color:#fff}.nav-card--cta .nav-card-desc{color:rgba(255,255,255,.78)}.nav-card--cta:hover{border-color:transparent;box-shadow:var(--shadow-lg)}.nav-card--cta .gz-burger-icon span{background:#fff}@media(max-width:1000px){.placowka-nav-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.placowka-nav-grid{grid-template-columns:1fr}}</style>
+.placowka-nav{padding:52px 0 12px}.placowka-nav-head{max-width:680px;margin-bottom:28px}.placowka-nav-head h2{margin:8px 0 10px}.placowka-nav-head p{font-size:15px;color:var(--slate);line-height:1.7;font-weight:300}.placowka-nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.nav-card{display:flex;flex-direction:column;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:22px 20px;text-decoration:none;text-align:left;font-family:var(--font-book);cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .15s,box-shadow .15s,border-color .15s}.nav-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--blue)}.nav-card-ttl{font-family:var(--font-demi);font-size:15px;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:8px}.nav-card-ttl .arr{color:var(--blue);font-weight:400;font-size:16px}.nav-card-desc{font-size:12.5px;color:var(--slate);line-height:1.55;font-weight:300}.nav-card--cta{background:linear-gradient(135deg,var(--navy) 0%,#24407a 100%);border-color:transparent}.nav-card--cta .nav-card-ttl{color:#fff}.nav-card--cta .nav-card-desc{color:rgba(255,255,255,.78)}.nav-card--cta:hover{border-color:transparent;box-shadow:var(--shadow-lg)}.nav-card--cta .gz-burger-icon span{background:#fff}@media(max-width:1000px){.placowka-nav-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.placowka-nav-grid{grid-template-columns:1fr}}.team-grid{display:grid;grid-template-columns:0.82fr 1.18fr;gap:40px;align-items:start}.team-info .section-label{margin-bottom:10px}.team-info h2{margin-bottom:14px}.team-info p{font-size:15px;line-height:1.8;color:var(--slate);margin-bottom:20px;font-weight:300}.team-note{background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:18px 20px;box-shadow:var(--shadow-sm)}.team-note-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}.team-note-txt{font-size:13px;line-height:1.7;color:var(--slate);font-weight:300}.team-note-txt a{color:var(--navy);font-weight:500;text-decoration:none;border-bottom:1px solid var(--border)}.team-note-txt a:hover{color:var(--blue);border-color:var(--blue)}.team-grid .dynamic-list{margin-top:0}@media(max-width:860px){.team-grid{grid-template-columns:1fr;gap:24px}}</style>
 </head>
 
 <body>
@@ -295,9 +295,16 @@ body.gz-open{overflow:hidden}
 <!-- 4. LEKARZE -->
 <section id="lekarze" class="placowka-section">
 <div class="wrap">
+<div class="team-grid">
+<div class="team-info">
 <span class="section-label">Zespół lekarski</span>
 <h2>Nasi lekarze</h2>
-<p>Lista lekarzy pracujących w naszej placówce - aktualizowana na bieżąco.</p>
+<p>Zespół doświadczonych lekarzy podstawowej i specjalistycznej opieki zdrowotnej. Lista jest aktualizowana na bieżąco — skład przyjmujących specjalistów może się różnić w zależności od harmonogramu.</p>
+<div class="team-note">
+<div class="team-note-label">Umawianie wizyt</div>
+<div class="team-note-txt">Wizyty umówisz telefonicznie lub osobiście w rejestracji. Dane kontaktowe i godziny otwarcia znajdziesz w sekcji <a href="#kontakt">Kontakt</a>.</div>
+</div>
+</div>
 <div class="dynamic-list" data-cms-list="placowka.lekarze" data-template="lekarz">
 <div class="dynamic-list-item">
 <div class="nazwisko">Imię i nazwisko</div>
@@ -312,19 +319,29 @@ body.gz-open{overflow:hidden}
 <div class="empty-list-hint">💡 Aby dodać lekarzy, wejdź w panel CMS → Placówka Płońsk → Lekarze → "+ Dodaj"</div>
 </div>
 </div>
+</div>
 </section>
 
 <!-- 5. PIELĘGNIARKI I POŁOŻNE -->
 <section id="pielegniarki" class="placowka-section">
 <div class="wrap">
+<div class="team-grid">
+<div class="team-info">
 <span class="section-label">Zespół pielęgniarski</span>
 <h2>Pielęgniarki i położne</h2>
+<p>Pielęgniarki i położne zapewniają opiekę w przychodni oraz w środowisku domowym pacjenta — w tym świadczenia profilaktyczne, zabiegowe i patronażowe.</p>
+<div class="team-note">
+<div class="team-note-label">Opieka domowa</div>
+<div class="team-note-txt">Część świadczeń pielęgniarskich i położniczych realizujemy także w domu pacjenta. Szczegóły i terminy ustalisz w <a href="#kontakt">rejestracji</a>.</div>
+</div>
+</div>
 <div class="dynamic-list" data-cms-list="placowka.pielegniarki" data-template="pielegniarka">
 <div class="dynamic-list-item">
 <div class="nazwisko">Imię i nazwisko</div>
 <div class="meta">Specjalizacja</div>
 </div>
 <div class="empty-list-hint">💡 Aby dodać pielęgniarki i położne, wejdź w panel CMS → Placówka Płońsk → Pielęgniarki → "+ Dodaj"</div>
+</div>
 </div>
 </div>
 </section>
